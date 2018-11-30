@@ -14,8 +14,7 @@
             $user = "root";
             $pw = "";
             $con = new PDO('mysql:host=localhost;dbname=blogdb', $user, $pw);
-            if($_SERVER['REQUEST_METHOD'] === 'POST') 
-            {
+            if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $createdBy  = $_POST['name']    ?? '';
                 $title = $_POST['post-title']   ?? '';
                 $post = $_POST['post-text']   ?? '';
@@ -42,16 +41,19 @@
             </fieldset>
         </form>
         <?php   $stmt = $con->query('SELECT * FROM posts');
-                foreach($stmt->fetchAll() as $row)
-            {
+                foreach($stmt->fetchAll() as $row){
                 echo 'Blogpost von:  ' . $row['created_by'] . '<br>';
                 echo 'Titel:  ' . $row['post_title'] . '<br>';
                 echo  $row['post_text'] . '<br>';
                 echo 'Veröffentlicht am: ' . $row['created_at']. '<br>';
-                echo '<img src="' . $row['link']  . '" alt="Bild" onError="this.src="https://www.transparenttextures.com/patterns/asfalt-light.png";>';
-                echo '<hr>';   
-            }
-       ?>
+                echo '<img src="' . $row['link']  . '" alt="Bild" onError="this.src="https://images.obi.ch/product/DE/1500x1500/609120_2.jpg";>';
+                echo '<hr>';}
+                
+        ?>
+        
+        <form method="post" action="/php/BLJ-Blog/Bloglinks.php">
+            <button class="btn" type="submit">Weitere Blogs</button>
+        </form>
     </div>   
     </body>
 </html> 
